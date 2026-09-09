@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Music Player</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="player-bar" aria-label="Музыкальный плеер">
+      <div class="track-meta">
+        <span class="brand-mark" aria-hidden="true">PM</span>
+        <div>
+          <p class="bar-label">Сейчас играет</p>
+          <strong id="now-playing">Lo-fi Pulse</strong>
+        </div>
+      </div>
+
+      <div class="audio-actions">
+        <button id="prev-track-button" class="icon-button" type="button" title="Предыдущий трек">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <button id="music-toggle-button" class="icon-button is-active" type="button" title="Включить или выключить музыку">
+          <span aria-hidden="true">♪</span>
+        </button>
+        <button id="next-track-button" class="icon-button" type="button" title="Следующий трек">
+          <span aria-hidden="true">›</span>
+        </button>
+        <label class="volume-control">
+          <span>Громкость</span>
+          <input id="volume-control" type="range" min="0" max="100" value="55" />
+        </label>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="timer-panel" aria-labelledby="app-title">
+        <p class="eyebrow">Pomodoro + музыка</p>
+        <h1 id="app-title">Фокус-плеер</h1>
+
+        <div class="timer-card" aria-live="polite">
+          <div class="timer-state">
+            <span id="mode-label">Фокус</span>
+            <span id="round-label">1 из 4</span>
+          </div>
+          <div class="time-display" id="time-display">25:00</div>
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="main-controls">
+          <button id="play-button" class="play-button" type="button">Play</button>
+          <button id="reset-button" type="button">Сброс</button>
+          <button id="skip-button" type="button">Пропустить</button>
+        </div>
+
+        <form class="settings-grid" id="settings-form">
+          <label>
+            <span>Фокус</span>
+            <input id="focus-minutes" type="number" min="1" max="180" value="25" />
+          </label>
+          <label>
+            <span>Короткий перерыв</span>
+            <input id="short-break-minutes" type="number" min="1" max="60" value="5" />
+          </label>
+          <label>
+            <span>Длинный перерыв</span>
+            <input id="long-break-minutes" type="number" min="1" max="120" value="15" />
+          </label>
+          <label>
+            <span>Фокус-сессий</span>
+            <input id="round-count" type="number" min="1" max="12" value="4" />
+          </label>
+        </form>
+      </section>
+
+      <aside class="music-panel" aria-labelledby="music-title">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Плейлист</p>
+            <h2 id="music-title">Музыка для фокуса</h2>
+          </div>
+          <select id="playlist-select" aria-label="Выбрать плейлист">
+            <option value="lofi">Lo-fi Pulse</option>
+            <option value="rain">Rain Room</option>
+            <option value="brown">Brown Noise</option>
+            <option value="custom">Моя музыка</option>
+          </select>
+        </div>
+
+        <div class="drop-zone" id="drop-zone">
+          <input id="music-files" type="file" accept="audio/*" multiple />
+          <input id="music-folder" type="file" accept="audio/*" multiple webkitdirectory />
+          <p>Перетащи аудиофайлы сюда</p>
+          <div class="upload-buttons">
+            <button id="upload-files-button" type="button">Выбрать файлы</button>
+            <button id="upload-folder-button" type="button">Выбрать папку</button>
+          </div>
+        </div>
+
+        <ul class="track-list" id="track-list"></ul>
+      </aside>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
